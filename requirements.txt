@@ -1,4 +1,3 @@
-findspark
-pyspark
-python-dateutil
-pathlib
+pyspark==2.4.5
+confluent-kafka==1.4.1
+colorlog==4.1.0
