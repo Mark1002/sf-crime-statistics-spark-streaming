@@ -1,16 +1,19 @@
+"""Execute kafka producer server."""
+
 import producer_server
 
 
 def run_kafka_server():
-	# TODO get the json file path
-    input_file = ""
+    """Rub kafka server."""
+
+    input_file = "data/police-department-calls-for-service.json"
 
     # TODO fill in blanks
     producer = producer_server.ProducerServer(
         input_file=input_file,
-        topic="",
-        bootstrap_servers="",
-        client_id=""
+        topic_name="sf.crime.stat.topic",
+        bootstrap_servers='127.0.0.1:9092',
+        client_id='sf-producer'
     )
 
     return producer
