@@ -2,7 +2,7 @@ import logging
 import os
 from pyspark.sql import SparkSession
 from pyspark.sql.types import (
-   StructType, StructField, StringType, IntegerType, TimestampType
+   StructType, StructField, StringType, TimestampType
 )
 import pyspark.sql.functions as psf
 
@@ -11,7 +11,7 @@ os.environ["PYSPARK_SUBMIT_ARGS"] = '--packages org.apache.spark:spark-sql-kafka
 
 # TODO Create a schema for incoming resources
 schema = StructType([
-    StructField('crime_id', IntegerType(), True),
+    StructField('crime_id', StringType(), True),
     StructField('original_crime_type_name', StringType(), True),
     StructField('report_date', TimestampType(), True),
     StructField('call_date', TimestampType(), True),
@@ -22,7 +22,7 @@ schema = StructType([
     StructField('address', StringType(), True),
     StructField('city', StringType(), True),
     StructField('state', StringType(), True),
-    StructField('agency_id', IntegerType(), True),
+    StructField('agency_id', StringType(), True),
     StructField('address_type', StringType(), True),
     StructField('common_location', StringType(), True)
 ])
@@ -56,35 +56,35 @@ def run_spark_job(spark):
 
     service_table.printSchema()
 
-    # TODO select original_crime_type_name and disposition
-    distinct_table = ''
+    # # TODO select original_crime_type_name and disposition
+    # distinct_table = ''
 
-    # count the number of original crime type
-    agg_df = ''
+    # # count the number of original crime type
+    # agg_df = ''
 
-    # TODO Q1. Submit a screen shot of a batch ingestion of the aggregation
-    # TODO write output stream
-    query = agg_df \
+    # # TODO Q1. Submit a screen shot of a batch ingestion of the aggregation
+    # # TODO write output stream
+    # query = agg_df \
 
 
-    # TODO attach a ProgressReporter
-    query.awaitTermination()
+    # # TODO attach a ProgressReporter
+    # query.awaitTermination()
 
-    # TODO get the right radio code json path
-    radio_code_json_filepath = ""
-    radio_code_df = spark.read.json(radio_code_json_filepath)
+    # # TODO get the right radio code json path
+    # radio_code_json_filepath = ""
+    # radio_code_df = spark.read.json(radio_code_json_filepath)
 
-    # clean up your data so that the column names
-    # match on radio_code_df and agg_df
-    # we will want to join on the disposition code
+    # # clean up your data so that the column names
+    # # match on radio_code_df and agg_df
+    # # we will want to join on the disposition code
 
-    # TODO rename disposition_code column to disposition
-    radio_code_df = radio_code_df.withColumnRenamed("disposition_code", "disposition") # noqa
+    # # TODO rename disposition_code column to disposition
+    # radio_code_df = radio_code_df.withColumnRenamed("disposition_code", "disposition") # noqa
 
-    # TODO join on disposition column
-    join_query = agg_df \
+    # # TODO join on disposition column
+    # join_query = agg_df \
 
-    join_query.awaitTermination()
+    # join_query.awaitTermination()
 
 
 if __name__ == "__main__":
