@@ -103,6 +103,10 @@ if __name__ == "__main__":
         .appName("KafkaSparkStructuredStreaming") \
         .getOrCreate()
 
+    # log4j = spark._jvm.org.apache.log4j
+    # log4j.LogManager.getLogger("org").setLevel(log4j.Level.OFF)
+    # log4j.LogManager.getLogger("akka").setLevel(log4j.Level.OFF)
+
     logger.info("Spark started")
 
     run_spark_job(spark)
