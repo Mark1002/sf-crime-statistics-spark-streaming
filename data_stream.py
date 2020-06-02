@@ -56,19 +56,25 @@ def run_spark_job(spark):
 
     service_table.printSchema()
 
-    # # TODO select original_crime_type_name and disposition
-    # distinct_table = ''
+    # TODO select original_crime_type_name and disposition
+    distinct_table = service_table.select(
+        ['original_crime_type_name', 'disposition']
+    )
 
-    # # count the number of original crime type
-    # agg_df = ''
+    # count the number of original crime type
+    agg_df = distinct_table.groupBy('original_crime_type_name').count()
+    agg_df = agg_df.orderBy(agg_df['count'].desc())
 
-    # # TODO Q1. Submit a screen shot of a batch ingestion of the aggregation
-    # # TODO write output stream
-    # query = agg_df \
+    # TODO Q1. Submit a screen shot of a batch ingestion of the aggregation
+    # TODO write output stream
+    query = agg_df \
+        .writeStream \
+        .format('console') \
+        .outputMode('Complete') \
+        .start()
 
-
-    # # TODO attach a ProgressReporter
-    # query.awaitTermination()
+    # TODO attach a ProgressReporter
+    query.awaitTermination()
 
     # # TODO get the right radio code json path
     # radio_code_json_filepath = ""
