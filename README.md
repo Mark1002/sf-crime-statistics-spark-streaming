@@ -1,5 +1,10 @@
 # sf-crime-statistics-spark-streaming
 ## step 1
+install package
+```
+$ pip install -r requirements.txt
+```
+
 Start up kafka server by docker-swarm.
 ```
 $ docker stack deploy -c=kafka-docker.yml udacity-kafka
